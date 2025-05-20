@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Formularz Koordynatora</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .field { margin-bottom: 10px; }
+    .participant { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+<h2>Dane ogólne</h2>
+
+<div class="field">
+  <label>Koordynator:</label>
+  <select id="koordynator">
+    <option value="">-- wybierz --</option>
+    <option>Jan Kowalski</option>
+    <option>Anna Nowak</option>
+  </select>
+</div>
+
+<div class="field">
+  <label>Uczelnia:</label>
+  <select id="uczelnia">
+    <option value="">-- wybierz --</option>
+    <option>UJ</option>
+    <option>PW</option>
+  </select>
+</div>
+
+<div class="field">
+  <label>Wydział:</label>
+  <select id="wydzial">
+    <option value="">-- wybierz --</option>
+    <option>WMiI</option>
+    <option>WZiKS</option>
+  </select>
+</div>
+
+<div class="field">
+  <label>Kierunek:</label>
+  <select id="kierunek">
+    <option value="">-- wybierz --</option>
+    <option>Informatyka</option>
+    <option>Zarządzanie</option>
+  </select>
+</div>
+
+<hr>
+
+<h2>Lista uczestników</h2>
+<div id="participants"></div>
+<button onclick="addParticipant()">Dodaj uczestnika</button>
+
+<script>
+function addParticipant() {
+  const koordynator = document.getElementById('koordynator').value;
+  const uczelnia = document.getElementById('uczelnia').value;
+  const wydzial = document.getElementById('wydzial').value;
+  const kierunek = document.getElementById('kierunek').value;
+
+  const container = document.getElementById('participants');
+  const div = document.createElement('div');
+  div.className = 'participant';
+
+  div.innerHTML = `
+    <div class="field">
+      <label>Imię i nazwisko uczestnika:</label>
+      <input type="text" name="uczestnik[]">
+    </div>
+    <div class="field">
+      <label>Koordynator:</label>
+      <input type="text" name="koordynator[]" value="${koordynator}" readonly>
+    </div>
+    <div class="field">
+      <label>Uczelnia:</label>
+      <input type="text" name="uczelnia[]" value="${uczelnia}" readonly>
+    </div>
+    <div class="field">
+      <label>Wydział:</label>
+      <input type="text" name="wydzial[]" value="${wydzial}" readonly>
+    </div>
+    <div class="field">
+      <label>Kierunek:</label>
+      <input type="text" name="kierunek[]" value="${kierunek}" readonly>
+    </div>
+  `;
+
+  container.appendChild(div);
+}
+</script>
+
+</body>
+</html>
