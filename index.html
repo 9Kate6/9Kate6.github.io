@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl" >
+<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <title>Formularz Koordynatora</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Dodaj Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 font-sans p-6">
@@ -12,7 +11,7 @@
   <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-md">
     <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">Dane ogólne</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
       <div>
         <label class="block mb-2 font-medium text-gray-700">Koordynator:</label>
         <select id="koordynator" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
@@ -48,6 +47,17 @@
           <option>Zarządzanie</option>
         </select>
       </div>
+
+      <div>
+        <label class="block mb-2 font-medium text-gray-700">Specjalność:</label>
+        <select id="specjalnosc" class="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <option value="">-- wybierz --</option>
+          <option>nie dotyczy</option>
+          <option>Data Science</option>
+          <option>Zarządzanie projektami</option>
+          <option>Sieci komputerowe</option>
+        </select>
+      </div>
     </div>
 
     <hr class="my-8 border-gray-300" />
@@ -63,12 +73,12 @@
 
   <script>
   function addParticipant() {
-    const koordynator = document.getElementById('koordynator').value;
     const uczelnia = document.getElementById('uczelnia').value;
     const wydzial = document.getElementById('wydzial').value;
     const kierunek = document.getElementById('kierunek').value;
+    const specjalnosc = document.getElementById('specjalnosc').value;
 
-    if (!koordynator || !uczelnia || !wydzial || !kierunek) {
+    if (!uczelnia || !wydzial || !kierunek || !specjalnosc) {
       alert("Proszę uzupełnić wszystkie dane ogólne przed dodaniem uczestnika.");
       return;
     }
@@ -84,10 +94,6 @@
       </div>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div>
-          <label class="block mb-1 font-medium text-gray-700">Koordynator:</label>
-          <input type="text" name="koordynator[]" value="${koordynator}" readonly class="w-full bg-gray-200 border border-gray-300 rounded-md p-2" />
-        </div>
-        <div>
           <label class="block mb-1 font-medium text-gray-700">Uczelnia:</label>
           <input type="text" name="uczelnia[]" value="${uczelnia}" readonly class="w-full bg-gray-200 border border-gray-300 rounded-md p-2" />
         </div>
@@ -99,6 +105,10 @@
           <label class="block mb-1 font-medium text-gray-700">Kierunek:</label>
           <input type="text" name="kierunek[]" value="${kierunek}" readonly class="w-full bg-gray-200 border border-gray-300 rounded-md p-2" />
         </div>
+        <div>
+          <label class="block mb-1 font-medium text-gray-700">Specjalność:</label>
+          <input type="text" name="specjalnosc[]" value="${specjalnosc}" readonly class="w-full bg-gray-200 border border-gray-300 rounded-md p-2" />
+        </div>
       </div>
     `;
 
@@ -108,3 +118,4 @@
 
 </body>
 </html>
+
